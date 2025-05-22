@@ -90,6 +90,8 @@ const lambertMaterial = new THREE.MeshLambertMaterial()
 const phongMaterial = new THREE.MeshPhongMaterial()
 phongMaterial.shininess = 100
 phongMaterial.specular = new THREE.Color(0x1188ff)
+phongMaterial.side = THREE.DoubleSide
+console.log('phongMaterial.side', phongMaterial.side)
 
 // MeshToonMaterial
 const toonMaterial = new THREE.MeshToonMaterial()
@@ -126,7 +128,7 @@ gui.add(standardMaterial, 'roughness').min(0).max(1).step(0.0001)
 const physicalMaterial = new THREE.MeshPhysicalMaterial()
 physicalMaterial.metalness = 0
 physicalMaterial.roughness = 0.15
-physicalMaterial.map = doorColorTexture
+// physicalMateriala.map = doorColorTexture
 physicalMaterial.aoMap = doorAmbientOcclusionTexture
 physicalMaterial.aoMapIntensity = 1
 physicalMaterial.displacementMap = doorHeightTexture
@@ -188,7 +190,7 @@ const sphere = new THREE.Mesh(
 sphere.position.x = - 1.5
 
 const plane = new THREE.Mesh(
-    new THREE.PlaneGeometry(1, 1, 100, 100),
+    new THREE.CircleGeometry(1, 36),
     basicMaterial
 )
 
@@ -301,8 +303,25 @@ for (let i = 0; i < materialsButtons.length; i++) {
 }
 
 function handleMaterialButtonClick(eventData) {
-    console.log('material:', eventData.target.dataset.material);
-    sphere.material = materials[eventData.target.dataset.material];
-    plane.material = materials[eventData.target.dataset.material];
-    torus.material = materials[eventData.target.dataset.material];
+    console.log('material:', eventData.target.dataset.textura);
+
+    sphere.material = materials[eventData.target.dataset.textura];
+    plane.material = materials[eventData.target.dataset.textura];
+    torus.material = materials[eventData.target.dataset.textura];
 }
+
+
+var miBoton = document.getElementById('miBoton');
+console.log('miBoton', miBoton);
+
+miBoton.addEventListener('click', (eventData) => {
+    console.log('click a miBoton');
+
+    sphere.position.y += 0.1;
+    plane.position.y -= 0.1;
+
+    pointLight.color = new THREE.Color('#ff6600');
+});
+
+
+

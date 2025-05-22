@@ -38,3 +38,17 @@ body
 .materialsBtn:hover, .materialsBtn.active {
     outline: 2px solid red;
 }
+
+
+#miBoton {
+    position: absolute;
+    margin: auto;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+    background-color: rgba(0,0,0, 0.5);
+    color: white;
+}
